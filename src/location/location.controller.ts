@@ -12,6 +12,7 @@ export class LocationController {
   save(@Body() dto: LocationDto) {
     return this.locationService.saveLocation(dto);
   }
+
   // 위치 조회
   //   @Get()
   //   getAll() {

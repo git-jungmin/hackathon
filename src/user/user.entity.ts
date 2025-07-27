@@ -1,16 +1,15 @@
-// src/location/location.entity.ts
+// src/user/user.entity.ts
 import {
   Entity,
-  Column,
   PrimaryGeneratedColumn,
-  CreateDateColumn,
+  Column,
   OneToOne,
-  JoinColumn,
+  CreateDateColumn,
 } from 'typeorm';
-import { User } from '../user/user.entity';
+import { Location } from '../location/location.entity';
 
 @Entity()
-export class Location {
+export class User {
   @PrimaryGeneratedColumn()
   id: number;
 
@@ -26,7 +25,6 @@ export class Location {
   @CreateDateColumn()
   timestamp: Date;
 
-  @OneToOne(() => User, (user) => user.location)
-  @JoinColumn()
-  user: User;
+  @OneToOne(() => Location, (location) => location.user)
+  location: Location;
 }
