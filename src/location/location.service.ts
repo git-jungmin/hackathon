@@ -1,27 +1,31 @@
 // src/location/location.service.ts
 import { Injectable } from '@nestjs/common';
+import { InjectRepository } from '@nestjs/typeorm';
+import { Location } from './location.entity';
+import { Repository } from 'typeorm';
 import { LocationDto } from './dto/location.dto';
 
 @Injectable()
 export class LocationService {
-  private locations: LocationDto[] = [];
+  constructor(
+    @InjectRepository(Location)
+    private readonly locationRepository: Repository<Location>,
+  ) {}
 
-  saveLocation(dto: LocationDto) {
-    const saved = {
-      ...dto,
-      timestamp: dto.timestamp || new Date().toISOString(),
-    };
-    this.locations.push(saved);
+  async saveLocation(dto: LocationDto) {
+    const location = this.locationRepository.create(dto);
+    const saved = await this.locationRepository.save(location);
     return { message: '위치 저장 완료', data: saved };
   }
 
-  //   getAllLocations() {
-  //     return this.locations;
-  //   }
-
-  getLatestLocation() {
-    return this.locations.length > 0
-      ? this.locations[this.locations.length - 1]
-      : null;
+  async getLatestLocation() {
+    return this.locationRepository.findOne({
+      order: { timestamp: 'DESC' },
+    });
   }
+
+  // 전체 위치 조회 (필요 시)
+  // async getAllLocations() {
+  //   return this.locationRepository.find({ order: { timestamp: 'DESC' } });
+  // }
 }
