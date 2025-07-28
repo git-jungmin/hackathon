@@ -9,6 +9,9 @@ export class Device {
   @Column({ unique: true })
   deviceId: string;
 
+  @Column({ nullable: true })
+  role?: string;
+
   @OneToMany(() => Location, (location) => location.device)
   locations: Location[];
 
