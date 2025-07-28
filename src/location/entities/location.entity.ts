@@ -15,8 +15,8 @@ export class Location {
   @Column('float')
   longitude: number;
 
-  @Column('float')
-  accuracy: number;
+  @Column('float', { nullable: true })
+  accuracy?: number;
 
   @ManyToOne(() => Device, (device) => device.locations)
   device: Device;
