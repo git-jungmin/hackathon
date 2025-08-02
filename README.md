@@ -2,7 +2,7 @@
 
 # 📡 Traco(SEIZE ON) - 실시간 치매 노인 추적 3D 웹 플랫폼
 
-> **이 저장소는 SEIZE ON 프로젝트의 백엔드 API 서버로,** <br />
+> **이 저장소는 Traco 프로젝트의 백엔드 API 서버로,** <br />
 > **치매 어르신의 GPS 위치를 수집하고 이를 3D 맵에서 실시간으로 추적·시각화하는 웹 서비스를 지원합니다.**
 
 This repository is the backend API server for Traco, a real-time web service that tracks and visualizes the location of dementia patients on a 3D map.  
